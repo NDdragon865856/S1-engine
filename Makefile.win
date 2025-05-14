@@ -1,0 +1,37 @@
+# Project: S1
+# Makefile created by Embarcadero Dev-C++ 6.3
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = bin/main.o engine/win_app.o engine/gl_renderer.o engine/game_loop.o
+LINKOBJ  = bin/main.o engine/win_app.o engine/gl_renderer.o engine/game_loop.o
+LIBS     = -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib" -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc -lopengl32 -lglu32 -lgdi32
+INCS     = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
+CXXINCS  = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
+BIN      = S1.exe
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+DEL      = C:\Program Files (x86)\Embarcadero\Dev-Cpp\devcpp.exe INTERNAL_DEL
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${DEL} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+bin/main.o: bin/main.cpp
+	$(CPP) -c bin/main.cpp -o bin/main.o $(CXXFLAGS)
+
+engine/win_app.o: engine/win_app.cpp
+	$(CPP) -c engine/win_app.cpp -o engine/win_app.o $(CXXFLAGS)
+
+engine/gl_renderer.o: engine/gl_renderer.cpp
+	$(CPP) -c engine/gl_renderer.cpp -o engine/gl_renderer.o $(CXXFLAGS)
+
+engine/game_loop.o: engine/game_loop.cpp
+	$(CPP) -c engine/game_loop.cpp -o engine/game_loop.o $(CXXFLAGS)
